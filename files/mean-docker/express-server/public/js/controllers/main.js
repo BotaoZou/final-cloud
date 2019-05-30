@@ -12,7 +12,7 @@ angular.module('Controller', [])
 			.success(function (data) {
 				console.log(data);
 				$scope.users = data;
-				$scope.registering = false;
+				$scope.registering = true;
 				departUsers();
 			});
 
@@ -24,16 +24,14 @@ angular.module('Controller', [])
 			// if form is empty, nothing will happen
 			console.log($scope.fromUserData);
 			if ($scope.fromUserData.user_name != undefined) {
-				console.log("I'm in.");
 				$scope.registering = true;
 
 				// call the create function from our service (returns a promise object)
 				Users.create($scope.fromUserData).success(function (data) {
-					console.log("TERMINATE");
 					$scope.registering = false;
 					$scope.fromUserData = {}; // clear the form so our user is ready to enter another
-					console.log("What kind of data?");
-					console.log(data);
+					$scope.users = data;
+					departUsers();
 				});
 			}
 
