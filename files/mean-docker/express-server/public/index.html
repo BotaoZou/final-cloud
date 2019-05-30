@@ -86,8 +86,8 @@
             <p class="text-center" ng-show="registering">
               <span class="fa fa-spinner fa-spin fa-3x"></span>
             </p>
-            <h1>{{1+1}}</h1>
-            <a href="" data-toggle="modal" data-dismiss="modal" data-target="#login">已有账号？点我登录</a>
+            <a href="" data-toggle="modal" data-dismiss="modal" ng-if="!regSuccess" data-target="#login">已有账号？点我登录</a>
+            <a href="" data-toggle="modal" data-dismiss="modal" ng-if="regSuccess" data-target="#login">注册成功！ 点我登录</a>
           </form>
         </div>
       </div>

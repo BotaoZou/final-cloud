@@ -4,6 +4,7 @@ angular.module('Controller', [])
 	.controller('Register', ['$scope', '$http', 'Users', function ($scope, $http, Users) {
 		$scope.fromUserData = {};
 		$scope.registering = true;
+		$scope.regSuccess = false;
 
 		// GET =====================================================================
 		// when landing on the page, get all todos and show them
@@ -32,6 +33,7 @@ angular.module('Controller', [])
 					$scope.fromUserData = {}; // clear the form so our user is ready to enter another
 					$scope.users = data;
 					departUsers();
+					$scope.regSuccess = false;
 				});
 			}
 
