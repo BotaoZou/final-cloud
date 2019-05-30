@@ -42,13 +42,14 @@ angular.module('Controller', [])
 		departUsers = function () {
 			$scope.usedName = [];
 			$scope.usedEmail = [];
+
 			for (u in $scope.users) {
 				console.log(u);
 				$scope.usedName.push(u.user_name);
 				$scope.usedEmail.push(u.email);
 			}
-			console.log(usedName);
-			console.log(usedEmail);
+			console.log($scope.usedName);
+			console.log($scope.usedEmail);
 		}
 
 		isDigitOrLetter = function (s) {
