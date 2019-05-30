@@ -46,13 +46,9 @@ ctrl.controller('Register', ['$scope', '$http', 'Users', function ($scope, $http
 		$scope.usedEmail = [];
 
 		for (u in $scope.users) {
-			console.log(u);
-			console.log($scope.users[u]);
 			$scope.usedName.push($scope.users[u].user_name);
 			$scope.usedEmail.push($scope.users[u].email);
 		}
-		console.log($scope.usedName);
-		console.log($scope.usedEmail);
 	};
 
 	isDigitOrLetter = function (s) {
@@ -114,9 +110,6 @@ ctrl.controller('Register', ['$scope', '$http', 'Users', function ($scope, $http
 	};
 
 	$scope.userNameUsedFormat = function () {
-		console.log("HHHHHHHHHHHHHHHHHH");
-		console.log(!'user_name' in $scope.fromUserData);
-		console.log(!$scope.fromUserData.user_name);
 		if (!'user_name' in $scope.fromUserData || !$scope.fromUserData.user_name)
 			return false;
 		else
@@ -124,9 +117,6 @@ ctrl.controller('Register', ['$scope', '$http', 'Users', function ($scope, $http
 	};
 
 	$scope.emailUsedFormat = function () {
-		console.log("HEHEHEHEHEHE");
-		console.log(!'email' in $scope.fromUserData);
-		console.log(!$scope.fromUserData.email);
 		if (!'email' in $scope.fromUserData || !$scope.fromUserData.email)
 			return false;
 		else
@@ -137,7 +127,6 @@ ctrl.controller('Register', ['$scope', '$http', 'Users', function ($scope, $http
 		if (!$scope.fromUserData.user_name)
 			return false;
 		var index = $scope.usedName.indexOf($scope.fromUserData.user_name);
-		console.log(index);
 		if (index == -1)
 			return false;
 		else
@@ -148,7 +137,6 @@ ctrl.controller('Register', ['$scope', '$http', 'Users', function ($scope, $http
 		if (!$scope.fromUserData.email)
 			return true;
 		var index = $scope.usedEmail.indexOf($scope.fromUserData.email);
-		console.log(index);
 		if (index == -1)
 			return false;
 		else
@@ -156,7 +144,6 @@ ctrl.controller('Register', ['$scope', '$http', 'Users', function ($scope, $http
 	};
 	$scope.allRight = function () {
 		var allRight = $scope.userNameValid() && codeValid() && emailValid() && !userNameUsed() && !emailUsed();
-		console.log(allRight);
 		return allRight;
 	};
 
@@ -200,7 +187,8 @@ ctrl.controller('Login', ['$scope', '$http', 'Users', function ($scope, $http, U
 
 	$scope.userNameFormatValid = function () {
 		console.log("AAAAAAAAAAAAA");
-		if ($scope.user_name == null)
+		console.log($scope.user_name)
+		if ($scope.user_name == null || $scope.user_name == undefined)
 			return true;
 		else
 			return userNameValid();
@@ -217,16 +205,27 @@ ctrl.controller('Login', ['$scope', '$http', 'Users', function ($scope, $http, U
 
 	$scope.codeFormatValid = function () {
 		console.log("BBBBBBBBBB");
-		if ($scope.code == null)
+		console.log($scope.code);
+		if ($scope.code == null || $scope.code == undefined)
 			return true;
 		else $scope.codeValid();
 
 	};
 
 	$scope.codeValid = function () {
-		if ($scope.user_name == null)
+		if ($scope.user_name == null || $scope.user_name == undefined)
 			return false;
+
+		if ($scope.code == null || $scope.code == undefined)
+			return false;
+
 		var userIdx = $scope.usedName.indexOf($scope.user_name);
+		console.log("OOOOOOOOOOOOOOOOOOOOOOO");
+		console.log(userIdx);
+
+		console.log($scope.user_name);
+		console.log($scope.code);
+		console.log("OOOOOOOOOOOOOOOOOOOOOOO");
 		if (userIdx == -1)
 			return false;
 
