@@ -197,7 +197,7 @@ ctrl.controller('Login', ['$scope', '$http', 'Users', function ($scope, $http, U
 	userNameValid = function () {
 		console.log("ONLY ONE");
 		console.log($scope.usedName);
-		console.log($scope.usedCode = []);
+		console.log($scope.usedCode);
 		console.log("ONLY ONE");
 		var index = $scope.usedName.indexOf($scope.user_name);
 		console.log(index);
