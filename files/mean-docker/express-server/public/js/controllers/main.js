@@ -119,6 +119,16 @@ angular.module('Controller', [])
 				return userNameUsed();
 		};
 
+		$scope.emailUsedFormat = function () {
+			console.log("HEHEHEHEHEHE");
+			console.log(!'email' in $scope.fromUserData);
+			console.log(!$scope.fromUserData.email);
+			if (!'email' in $scope.fromUserData || !$scope.fromUserData.email)
+				return false;
+			else
+				return emailUsed();
+		};
+
 		userNameUsed = function () {
 			var index = $scope.usedName.indexOf($scope.fromUserData.user_name);
 			console.log(index);
@@ -128,6 +138,14 @@ angular.module('Controller', [])
 				return true;
 		};
 
+		emailUsed = function () {
+			var index = $scope.usedEmail.indexOf($scope.fromUserData.email);
+			console.log(index);
+			if (index == -1)
+				return false;
+			else
+				return true;
+		};
 		$scope.allRight = function () {
 			var allRight = $scope.userNameValid() && codeValid() && emailValid() && !userNameUsed();
 			console.log(allRight);
