@@ -43,7 +43,6 @@ module.exports = function (app) {
             if (err) {
                 res.send(err);
             }
-            console.log(user);
         });
 
     });
