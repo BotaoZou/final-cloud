@@ -13,6 +13,7 @@ angular.module('Controller', [])
 				console.log(data);
 				$scope.users = data;
 				$scope.registering = false;
+				departUsers();
 			});
 
 		// CREATE ==================================================================
