@@ -27,19 +27,13 @@ angular.module('Controller', [])
 				$scope.registering = true;
 
 				// call the create function from our service (returns a promise object)
-				Users.create($scope.fromUserData).then(
-					function (data) {
-						console.log("TERMINATE");
-						$scope.registering = false;
-						$scope.fromUserData = {}; // clear the form so our user is ready to enter another
-						console.log("What kind of data?");
-						console.log(data);
-					},
-					function (data) {
-						console.log('FAIL!');
-						console.log(data);
-					}
-				);
+				Users.create($scope.fromUserData).success(function (data) {
+					console.log("TERMINATE");
+					$scope.registering = false;
+					$scope.fromUserData = {}; // clear the form so our user is ready to enter another
+					console.log("What kind of data?");
+					console.log(data);
+				});
 			}
 
 		};
