@@ -22,7 +22,7 @@ angular.module('Controller', [])
 			// validate the formData to make sure that something is there
 			// if form is empty, nothing will happen
 			console.log($scope.fromUserData);
-			if ($scope.fromUserData.user_id != undefined) {
+			if ($scope.fromUserData.user_name != undefined) {
 				$scope.registering = true;
 
 				// call the create function from our service (returns a promise object)
@@ -83,7 +83,7 @@ angular.module('Controller', [])
 		};
 
 		emailValid = function () {
-			if (!'email' in $scope.fromUserData || ! $scope.fromUserData.email)
+			if (!'email' in $scope.fromUserData || !$scope.fromUserData.email)
 				return false;
 			return isEmail($scope.fromUserData.email);
 		};
