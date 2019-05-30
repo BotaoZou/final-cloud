@@ -51,10 +51,6 @@ angular.module('Controller', [])
 			console.log(usedEmail);
 		}
 
-		$scope.validateUserData() {
-
-		};
-
 		isDigitOrLetter = function (s) {
 			var re = /^[0-9a-zA-Z]*$/g;
 			if (!re.test(s))
