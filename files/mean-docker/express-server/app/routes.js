@@ -32,7 +32,7 @@ module.exports = function (app) {
 
 
     app.post('/api/users', function (req, res) {
-
+        console.log('POST IN IS');
         // create a todo, information comes from AJAX request from Angular
         User.create({
             user_name: req.body.user_name,
