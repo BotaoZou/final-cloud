@@ -166,7 +166,6 @@ ctrl.controller('Login', ['$scope', '$http', 'Users', function ($scope, $http, U
 	// use the service to get all the todos
 	Users.get()
 		.success(function (data) {
-			console.log(data);
 			$scope.users = data;
 			$scope.logining = false;
 			departUsers();
@@ -177,19 +176,15 @@ ctrl.controller('Login', ['$scope', '$http', 'Users', function ($scope, $http, U
 		$scope.usedCode = [];
 
 		for (u in $scope.users) {
-			console.log(u);
-			console.log($scope.users[u]);
+
 			$scope.usedName.push($scope.users[u].user_name);
 			$scope.usedCode.push($scope.users[u].code);
 		}
-		console.log($scope.usedName);
-		console.log($scope.usedCode);
+
 		$scope.len = $scope.usedName.length;
 	};
 
 	$scope.userNameFormatValid = function () {
-		console.log("AAAAAAAAAAAAA");
-		console.log($scope.user_name)
 		if ($scope.user_name == null || $scope.user_name == undefined)
 			return true;
 		else
@@ -197,12 +192,8 @@ ctrl.controller('Login', ['$scope', '$http', 'Users', function ($scope, $http, U
 	};
 
 	userNameValid = function () {
-		console.log("ONLY ONE");
-		console.log($scope.usedName);
-		console.log($scope.usedCode);
-		console.log("ONLY ONE");
+
 		var index = $scope.usedName.indexOf($scope.user_name);
-		console.log(index);
 		if (index == -1)
 			return false;
 		else
@@ -210,8 +201,7 @@ ctrl.controller('Login', ['$scope', '$http', 'Users', function ($scope, $http, U
 	};
 
 	$scope.codeFormatValid = function () {
-		console.log("BBBBBBBBBB");
-		console.log($scope.code);
+
 		if ($scope.code == null || $scope.code == undefined)
 			return true;
 		else
@@ -227,13 +217,7 @@ ctrl.controller('Login', ['$scope', '$http', 'Users', function ($scope, $http, U
 			return false;
 
 		var userIdx = $scope.usedName.indexOf($scope.user_name);
-		console.log("OOOOOOOOOOOOOOOOOOOOOOO");
-		console.log(userIdx);
 
-		console.log($scope.user_name);
-		console.log($scope.code);
-		console.log($scope.code == $scope.usedCode[userIdx]);
-		console.log("OOOOOOOOOOOOOOOOOOOOOOO");
 		if (userIdx == -1)
 			return false;
 
