@@ -158,6 +158,7 @@ ctrl.controller('Login', ['$scope', '$http', 'Users', function ($scope, $http, U
 	$scope.user_name = null;
 	$scope.code = null;
 	$scope.logining = true;
+	$scope.len = 0;
 
 
 	// GET =====================================================================
@@ -183,9 +184,20 @@ ctrl.controller('Login', ['$scope', '$http', 'Users', function ($scope, $http, U
 		}
 		console.log($scope.usedName);
 		console.log($scope.usedCode);
+		$scope.len = $scope.usedName.length;
 	};
 
 	$scope.userNameFormatValid = function () {
+		if ($scope.len == 0) {
+			Users.get()
+				.success(function (data) {
+					console.log(data);
+					$scope.users = data;
+					$scope.logining = false;
+					departUsers();
+				});
+		}
+
 		console.log("AAAAAAAAAAAAA");
 		console.log($scope.user_name)
 		if ($scope.user_name == null || $scope.user_name == undefined)
@@ -212,7 +224,8 @@ ctrl.controller('Login', ['$scope', '$http', 'Users', function ($scope, $http, U
 		console.log($scope.code);
 		if ($scope.code == null || $scope.code == undefined)
 			return true;
-		else $scope.codeValid();
+		else
+			return $scope.codeValid();
 
 	};
 
