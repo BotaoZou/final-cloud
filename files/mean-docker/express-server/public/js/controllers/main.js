@@ -154,7 +154,7 @@ ctrl.controller('Register', ['$scope', '$http', 'Users', function ($scope, $http
 
 }]);
 
-ctrl.controller('Login', ['$scope', '$http', 'Users', function ($scope, $http, Users) {
+ctrl.controller('Login', ['$scope', '$http', '$rootScope', 'Users', function ($scope, $rootScope, $http, Users) {
 	$scope.user_name = null;
 	$scope.code = null;
 	$scope.logining = true;
