@@ -3,7 +3,7 @@ angular.module('Controller', [])
 
 	.controller('Register', ['$scope', '$http', 'Users', function ($scope, $http, Users) {
 		$scope.fromUserData = {};
-		$scope.registering = false;
+		$scope.registering = true;
 
 		// GET =====================================================================
 		// when landing on the page, get all todos and show them
@@ -12,7 +12,7 @@ angular.module('Controller', [])
 			.success(function (data) {
 				console.log(data);
 				$scope.users = data;
-				$scope.registering = true;
+				$scope.registering = false;
 				departUsers();
 			});
 
@@ -43,8 +43,8 @@ angular.module('Controller', [])
 
 			for (u in $scope.users) {
 				console.log(u);
-				$scope.usedName.push(u.user_name);
-				$scope.usedEmail.push(u.email);
+				$scope.usedName.push($scope.users[u].user_name);
+				$scope.usedEmail.push($scope.users[u].email);
 			}
 			console.log($scope.usedName);
 			console.log($scope.usedEmail);
