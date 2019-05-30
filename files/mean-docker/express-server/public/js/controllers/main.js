@@ -110,7 +110,9 @@ angular.module('Controller', [])
 		};
 
 		$userNameUsedFormat = function () {
-			if (!'user_name' in $scope.fromUserData || !$scope.fromUserData)
+			console.log(!'user_name' in $scope.fromUserData);
+			console.log(!$scope.fromUserData.user_name);
+			if (!'user_name' in $scope.fromUserData || !$scope.fromUserData.user_name)
 				return false;
 			else
 				return userNameUsed();
@@ -118,6 +120,7 @@ angular.module('Controller', [])
 
 		userNameUsed = function () {
 			var index = $scope.usedName.indexOf($scope.fromUserData.user_name);
+			console.log(index);
 			if (index == -1)
 				return false;
 			else
