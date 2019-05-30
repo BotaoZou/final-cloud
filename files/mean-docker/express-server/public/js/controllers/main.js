@@ -33,7 +33,8 @@ angular.module('Controller', [])
 						console.log("TERMINATE");
 						$scope.registering = false;
 						$scope.fromUserData = {}; // clear the form so our user is ready to enter another
-
+						console.log("What kind of data?");
+						console.log(data);
 					});
 			}
 
