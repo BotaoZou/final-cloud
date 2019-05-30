@@ -188,16 +188,6 @@ ctrl.controller('Login', ['$scope', '$http', 'Users', function ($scope, $http, U
 	};
 
 	$scope.userNameFormatValid = function () {
-		if ($scope.len == 0) {
-			Users.get()
-				.success(function (data) {
-					console.log(data);
-					$scope.users = data;
-					$scope.logining = false;
-					departUsers();
-				});
-		}
-
 		console.log("AAAAAAAAAAAAA");
 		console.log($scope.user_name)
 		if ($scope.user_name == null || $scope.user_name == undefined)
