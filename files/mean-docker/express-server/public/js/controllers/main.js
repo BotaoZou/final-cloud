@@ -147,7 +147,7 @@ angular.module('Controller', [])
 				return true;
 		};
 		$scope.allRight = function () {
-			var allRight = $scope.userNameValid() && codeValid() && emailValid() && !userNameUsed();
+			var allRight = $scope.userNameValid() && codeValid() && emailValid() && !userNameUsed() && !emailUsed();
 			console.log(allRight);
 			return allRight;
 		};

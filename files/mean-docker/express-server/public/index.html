@@ -74,6 +74,7 @@
             <div class="form-group">
               <label for="">邮箱</label>
               <label for="" ng-if="!emailFormmatRight()" style="color: red">邮箱格式不正确</label>
+              <label for="" ng-if="emailUsedFormat()" style="color: red">邮箱已注册</label>
               <input class="form-control" type="text" placeholder="例如:123@123.com" ng-model="fromUserData.email"
                 name="email" required>
             </div>
