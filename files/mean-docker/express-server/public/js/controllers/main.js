@@ -229,6 +229,7 @@ ctrl.controller('Login', ['$scope', '$http', 'Users', function ($scope, $http, U
 
 		console.log($scope.user_name);
 		console.log($scope.code);
+		console.log($scope.code == $scope.usedCode[userIdx]);
 		console.log("OOOOOOOOOOOOOOOOOOOOOOO");
 		if (userIdx == -1)
 			return false;
