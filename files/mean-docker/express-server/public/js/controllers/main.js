@@ -38,6 +38,22 @@ angular.module('Controller', [])
 
 		};
 
+		departUsers = function () {
+			$scope.usedName = [];
+			$scope.usedEmail = [];
+			for (u in $scope.users) {
+				console.log(u);
+				$scope.usedName.push(u.user_name);
+				$scope.usedEmail.push(u.email);
+			}
+			console.log(usedName);
+			console.log(usedEmail);
+		}
+
+		$scope.validateUserData() {
+
+		};
+
 		isDigitOrLetter = function (s) {
 			var re = /^[0-9a-zA-Z]*$/g;
 			if (!re.test(s))
