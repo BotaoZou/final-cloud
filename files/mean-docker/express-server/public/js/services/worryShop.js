@@ -1,16 +1,15 @@
 angular.module('worryShopServer', [])
 
-	.factory('Users', ['$http',function($http) {
+	.factory('Users', ['$http', function ($http) {
 		return {
-			get : function() {
+			get: function () {
 				return $http.get('/api/users');
 			},
-			create : function(userData) {
+			create: function (userData) {
 				return $http.post('/api/users', userData);
 			},
-			delete : function(id) {
+			delete: function (id) {
 				return $http.delete('/api/users/' + id);
 			}
 		}
 	}]);
-
