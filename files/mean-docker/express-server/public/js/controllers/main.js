@@ -109,6 +109,21 @@ angular.module('Controller', [])
 				return $scope.fromUserData.code && $scope.codeAgain && $scope.codeFormmatRight() && $scope.fromUserData.code == $scope.codeAgain;
 		};
 
+		$userNameUsedFormat = function () {
+			if (!'user_name' in $scope.fromUserData || !$scope.fromUserData)
+				return false;
+			else
+				return userNameUsed();
+		}
+
+		userNameUsed = function () {
+			var index = $scope.usedName.indexOf($scope.fromUserData.user_name);
+			if (index == -1)
+				return false;
+			else
+				return true;
+		}
+
 		$scope.allRight = function () {
 			var allRight = $scope.userNameValid() && codeValid() && emailValid();
 			console.log(allRight);

@@ -10,14 +10,18 @@
 
   <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css"><!-- load bootstrap -->
   <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+  <!-- <link rel="stylesheet" href="js/font-awesome.min.css"> -->
   <title>解忧杂货店</title>
 
   <!-- SPELLS -->
-  <script src="//cdn.bootcss.com/angular.js/1.2.16/angular.min.js"></script><!-- load angular -->
+  <script src="//cdn.bootcss.com/angular.js/1.2.16/angular.min.js"></script>
+  <!-- load angular -->
+  <!-- <script src="js/angular.min.js"></script> -->
   <!--- load angular -->
   <script src="js/controllers/main.js"></script> <!-- load up our controller -->
   <script src="js/services/worryShop.js"></script> <!-- load our todo service -->
   <script src="js/core.js"></script> <!-- load our main application -->
+
 </head>
 
 <body class="jumbotron" style="background-image: url(./background.png);" ng-app="worryShop">
@@ -49,6 +53,7 @@
             <div class="form-group">
               <label for="">用户名</label>
               <label for="" ng-if="!userNameFormmatRight()" style="color: red">用户名格式不正确</label>
+              <label for="" ng-if="userNameUsedFormat()" style="color: red">用户名已注册</label>
               <input class="form-control" type="text" placeholder="6-15位数字或字母" required maxlength="15" minlength="6"
                 name="user_name" ng-model="fromUserData.user_name">
             </div>
@@ -80,6 +85,7 @@
             <p class="text-center" ng-show="registering">
               <span class="fa fa-spinner fa-spin fa-3x"></span>
             </p>
+            <h1>{{1+1}}</h1>
             <a href="" data-toggle="modal" data-dismiss="modal" data-target="#login">已有账号？点我登录</a>
           </form>
         </div>
