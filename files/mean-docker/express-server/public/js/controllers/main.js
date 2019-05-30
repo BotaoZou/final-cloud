@@ -28,12 +28,12 @@ angular.module('Controller', [])
 
 				// call the create function from our service (returns a promise object)
 				Users.create($scope.fromUserData)
-
 					// if successful creation, call our get function to get all the new todos
 					.success(function (data) {
+						console.log("TERMINATE");
 						$scope.registering = false;
 						$scope.fromUserData = {}; // clear the form so our user is ready to enter another
-						
+
 					});
 			}
 
