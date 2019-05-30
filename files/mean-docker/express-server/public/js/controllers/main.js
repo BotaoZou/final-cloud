@@ -33,7 +33,7 @@ angular.module('Controller', [])
 					$scope.fromUserData = {}; // clear the form so our user is ready to enter another
 					$scope.users = data;
 					departUsers();
-					$scope.regSuccess = false;
+					$scope.regSuccess = true;
 				});
 			}
 
