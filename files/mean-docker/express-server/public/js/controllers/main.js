@@ -132,6 +132,8 @@ ctrl.controller('Register', ['$scope', '$http', 'Users', function ($scope, $http
 	};
 
 	userNameUsed = function () {
+		if (!$scope.fromUserData.user_name)
+			return false;
 		var index = $scope.usedName.indexOf($scope.fromUserData.user_name);
 		console.log(index);
 		if (index == -1)
@@ -141,6 +143,8 @@ ctrl.controller('Register', ['$scope', '$http', 'Users', function ($scope, $http
 	};
 
 	emailUsed = function () {
+		if (!$scope.fromUserData.email)
+			return true;
 		var index = $scope.usedEmail.indexOf($scope.fromUserData.email);
 		console.log(index);
 		if (index == -1)
