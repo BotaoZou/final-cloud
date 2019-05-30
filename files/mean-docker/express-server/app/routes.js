@@ -32,7 +32,7 @@ module.exports = function (app) {
 
 
     app.post('/api/users', function (req, res) {
-        console.log('POST IN IS');
+        console.log('POST /api/users');
         // create a todo, information comes from AJAX request from Angular
         User.create({
             user_name: req.body.user_name,
@@ -40,8 +40,10 @@ module.exports = function (app) {
             email: req.body.email,
             rank: 0,
         }, function (err, user) {
-            if (err)
+            if (err) {
                 res.send(err);
+                console.log(user);
+            }
         });
 
     });
@@ -96,9 +98,5 @@ module.exports = function (app) {
 
             getWishes(res);
         });
-    });
-    // application -------------------------------------------------------------
-    app.get('*', function (req, res) {
-        res.sendFile('../public/index.html'); // load the single view file (angular will handle the page changes on the front-end)
     });
 };
