@@ -159,6 +159,7 @@ ctrl.controller('Login', ['$scope', '$http', 'Users', function ($scope, $http, U
 	$scope.code = null;
 	$scope.logining = true;
 	$scope.loginSuccess = false;
+	$rootScope.userName = null;
 
 
 	// GET =====================================================================
@@ -221,8 +222,10 @@ ctrl.controller('Login', ['$scope', '$http', 'Users', function ($scope, $http, U
 		if (userIdx == -1)
 			return false;
 
-		if ($scope.code == $scope.usedCode[userIdx])
+		if ($scope.code == $scope.usedCode[userIdx]) {
+			$rootScope.userName = $scope.user_name;
 			return true;
+		}
 		return false;
 	};
 
