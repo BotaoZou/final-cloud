@@ -109,7 +109,7 @@ angular.module('Controller', [])
 				return $scope.fromUserData.code && $scope.codeAgain && $scope.codeFormmatRight() && $scope.fromUserData.code == $scope.codeAgain;
 		};
 
-		$userNameUsedFormat = function () {
+		$scope.userNameUsedFormat = function () {
 			console.log("HHHHHHHHHHHHHHHHHH");
 			console.log(!'user_name' in $scope.fromUserData);
 			console.log(!$scope.fromUserData.user_name);
