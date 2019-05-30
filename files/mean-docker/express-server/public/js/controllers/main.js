@@ -5,6 +5,8 @@ ctrl.controller('Register', ['$scope', '$http', 'Users', function ($scope, $http
 	$scope.fromUserData = {};
 	$scope.registering = true;
 	$scope.regSuccess = false;
+	$scope.usedName = [];
+	$scope.usedEmail = [];
 
 	// GET =====================================================================
 	// when landing on the page, get all todos and show them
