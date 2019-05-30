@@ -129,7 +129,7 @@ angular.module('Controller', [])
 		};
 
 		$scope.allRight = function () {
-			var allRight = $scope.userNameValid() && codeValid() && emailValid();
+			var allRight = $scope.userNameValid() && codeValid() && emailValid() && !userNameUsed();
 			console.log(allRight);
 			return allRight;
 		};
