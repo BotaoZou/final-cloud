@@ -110,6 +110,7 @@ angular.module('Controller', [])
 		};
 
 		$userNameUsedFormat = function () {
+			console.log("HHHHHHHHHHHHHHHHHH");
 			console.log(!'user_name' in $scope.fromUserData);
 			console.log(!$scope.fromUserData.user_name);
 			if (!'user_name' in $scope.fromUserData || !$scope.fromUserData.user_name)
