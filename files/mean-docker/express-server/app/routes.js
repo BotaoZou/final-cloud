@@ -30,10 +30,7 @@ module.exports = function (app) {
         getWishes(res);
     });
 
-
     app.post('/api/users', function (req, res) {
-        console.log('POST /api/users');
-        // create a todo, information comes from AJAX request from Angular
         User.create({
             user_name: req.body.user_name,
             code: req.body.code,
@@ -41,11 +38,11 @@ module.exports = function (app) {
             rank: 0,
             done: false
         }, function (err, user) {
-            if (err) {
+            if (err)
                 res.send(err);
 
-                getUsers(res);
-            }
+            // get and return all the todos after you create another
+            getUsers(res);
         });
 
     });
