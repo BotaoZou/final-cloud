@@ -158,7 +158,7 @@ ctrl.controller('Login', ['$scope', '$http', 'Users', function ($scope, $http, U
 	$scope.user_name = null;
 	$scope.code = null;
 	$scope.logining = true;
-	$scope.len = 0;
+	$scope.loginSuccess = false;
 
 
 	// GET =====================================================================
@@ -229,6 +229,7 @@ ctrl.controller('Login', ['$scope', '$http', 'Users', function ($scope, $http, U
 	$scope.login = function () {
 		console.log($scope.user_name);
 		console.log($scope.code);
+		$scope.loginSuccess = true;
 	}
 
 }]);
