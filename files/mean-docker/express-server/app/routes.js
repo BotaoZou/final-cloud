@@ -1,18 +1,5 @@
-var Todo = require('./models/todo');
 var User = require('./models/user');
 var Wish = require('./models/wish')
-
-function getTodos(res) {
-    Todo.find(function (err, todos) {
-
-        // if there is an error retrieving, send the error. nothing after res.send(err) will execute
-        if (err) {
-            res.send(err);
-        }
-
-        res.json(todos); // return all todos in JSON format
-    });
-};
 
 function getUsers(res) {
     User.find(function (err, users) {
@@ -33,14 +20,6 @@ function getWishes(res) {
 };
 
 module.exports = function (app) {
-
-    // api ---------------------------------------------------------------------
-    // get all todos
-    app.get('/api/todos', function (req, res) {
-        // use mongoose to get all todos in the database
-        getTodos(res);
-    });
-
     app.get('/api/users', function (req, res) {
         // use mongoose to get all todos in the database
         getUsers(res);
@@ -52,39 +31,17 @@ module.exports = function (app) {
     });
 
 
-    // create todo and send back all todos after creation
-    app.post('/api/todos', function (req, res) {
-
-        // create a todo, information comes from AJAX request from Angular
-        Todo.create({
-            text: req.body.text,
-            value: req.body.value,
-            done: false
-        }, function (err, todo) {
-            if (err)
-                res.send(err);
-
-            // get and return all the todos after you create another
-            getTodos(res);
-        });
-
-    });
-
     app.post('/api/users', function (req, res) {
 
         // create a todo, information comes from AJAX request from Angular
         User.create({
             user_name: req.body.user_name,
             code: req.body.code,
-            contact_method: req.body.contact_method,
-            rank: req.body.rank,
-            done: false
+            email: req.body.email,
+            rank: 0,
         }, function (err, user) {
             if (err)
                 res.send(err);
-
-            // get and return all the todos after you create another
-            getUsers(res);
         });
 
     });
@@ -103,9 +60,6 @@ module.exports = function (app) {
         }, function (err, wish) {
             if (err)
                 res.send(err);
-
-            // get and return all the todos after you create another
-            getWishes(res);
         });
 
     });

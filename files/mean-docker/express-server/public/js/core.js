@@ -1,1 +1,1 @@
-angular.module('worryShop', ['Controller', 'todoService']);
+angular.module('worryShop', ['Controller', 'worryShopServer']);

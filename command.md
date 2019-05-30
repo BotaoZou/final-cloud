@@ -18,3 +18,9 @@
 # TODO...
 >> ## 1. check docker list
 >>> ### docker ps
+>> ## 2. stop all docker
+>>> ### docker-compose down
+>> ## 3. build docker again
+>>> ### docker-compose build
+>> ## 4. start docker 
+>>> ### docker-compose up
