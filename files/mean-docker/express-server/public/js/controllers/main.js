@@ -43,6 +43,7 @@ angular.module('Controller', [])
 
 			for (u in $scope.users) {
 				console.log(u);
+				console.log($scope.users[u]);
 				$scope.usedName.push($scope.users[u].user_name);
 				$scope.usedEmail.push($scope.users[u].email);
 			}
