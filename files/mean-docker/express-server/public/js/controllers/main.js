@@ -60,7 +60,7 @@ angular.module('Controller', [])
 		};
 
 		$scope.userNameValid = function () {
-			if (!'user_name' in $scope.fromUserData || $scope.fromUserData.user_name)
+			if (!'user_name' in $scope.fromUserData || !$scope.fromUserData.user_name)
 				return false;
 			var user_name = $scope.fromUserData.user_name;
 			return isDigitOrLetter(user_name) && user_name.length >= 6 && user_name.length <= 15;
@@ -83,7 +83,7 @@ angular.module('Controller', [])
 		};
 
 		emailValid = function () {
-			if (!'email' in $scope.fromUserData || $scope.fromUserData.email)
+			if (!'email' in $scope.fromUserData || ! $scope.fromUserData.email)
 				return false;
 			return isEmail($scope.fromUserData.email);
 		};
