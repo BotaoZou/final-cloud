@@ -223,8 +223,10 @@ ctrl.controller('Login', ['$scope', '$http', 'Users', function ($scope, $http, U
 			return false;
 
 		if ($scope.code == $scope.usedCode[userIdx]) {
-			$rootScope.userName = $scope.user_name;
-			return true;
+			{
+				$rootScope.userName = $scope.user_name;
+				return true;
+			}
 		}
 		return false;
 	};
