@@ -23,6 +23,7 @@ angular.module('Controller', [])
 			// if form is empty, nothing will happen
 			console.log($scope.fromUserData);
 			if ($scope.fromUserData.user_name != undefined) {
+				console.log("I'm in.");
 				$scope.registering = true;
 
 				// call the create function from our service (returns a promise object)
