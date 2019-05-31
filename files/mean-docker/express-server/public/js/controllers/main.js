@@ -227,7 +227,7 @@ ctrl.controller('Login', ['$scope', '$http', '$rootScope', 'Users', function ($s
 	}
 
 }]),
-ctrl.controller('Wish', ['$scope', '$http', $rootScope, 'Wishes', function ($scope, $http, $rootScope, Wishes) {
+ctrl.controller('Wish', ['$scope', '$http', '$rootScope', 'Wishes', function ($scope, $http, $rootScope, Wishes) {
 	$scope.formData = {};
 	$scope.loading = true;
 	$scope.user_wishes;
