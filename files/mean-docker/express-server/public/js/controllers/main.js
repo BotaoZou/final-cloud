@@ -53,9 +53,6 @@ ctrl.controller('Register', ['$scope', '$http', '$rootScope', 'Users', function 
 			$rootScope.usedName.push($rootScope.users[u].user_name);
 			$rootScope.usedEmail.push($rootScope.users[u].email);
 		}
-
-		console.log($rootScope.usedName);
-		console.log($rootScope.usedCode);
 	};
 
 	isDigitOrLetter = function (s) {
@@ -177,11 +174,6 @@ ctrl.controller('Login', ['$scope', '$http', '$rootScope', 'Users', function ($s
 	};
 
 	userNameValid = function () {
-		console.log("NNNNNNNNNNNNNNNNNNNNNNNNNNN");
-		console.log($rootScope.usedName);
-		console.log($rootScope.usedCode);
-		console.log($scope.user_name);
-		console.log("NNNNNNNNNNNNNNNNNNNNNNNNNNNN");
 		if ($scope.user_name == null || $scope.user_name == undefined)
 			return false;
 
