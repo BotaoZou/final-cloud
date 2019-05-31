@@ -12,4 +12,17 @@ angular.module('worryShopServer', [])
 				return $http.delete('/api/users/' + id);
 			}
 		}
+	}])
+	.factory('Wishes', ['$http', function ($http) {
+		return {
+			get: function () {
+				return $http.get('/api/users');
+			},
+			create: function (wishData) {
+				return $http.post('/api/users', wishData);
+			},
+			delete: function (id) {
+				return $http.delete('/api/users/' + id);
+			}
+		}
 	}]);

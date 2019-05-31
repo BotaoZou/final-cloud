@@ -226,4 +226,82 @@ ctrl.controller('Login', ['$scope', '$http', '$rootScope', 'Users', function ($s
 		$scope.loginSuccess = true;
 	}
 
+}]),
+ctrl.controller('Wish', ['$scope', '$http', $rootScope, 'Wishes', function ($scope, $http, $rootScope, Wishes) {
+	$scope.formData = {};
+	$scope.loading = true;
+	$scope.user_wishes;
+	$scope.RandomWishes;
+	$rootScope.username;
+	// GET =====================================================================
+	// when landing on the page, get all todos and show them
+	// use the service to get all the todos
+	function getWishesByUsername() {
+		//找到某个人的所有愿望
+		return $scope.wishes.find({ user_name: $rootScope.username }, function (err, wishes) {
+			if (err)
+				res.send(err);
+			res.json(wishes);
+		});
+	}
+	function getRandomWishes(req) {
+		var i = 0;
+		$scope.wishes.find.find(function (err, wishes) {
+			if (err)
+				res.send(err);
+			var step = Math.ceil(wishes.length / 6);
+			var start = Math.ceil(Math.random * wishes.length);
+			var RandomWishes = new Array[6];
+			for (var i = 0; i < 6; i++) {
+				RandomWishes[i] = wishes[start + step - 1];
+			}
+			return res.json(RandomWishes);
+		});
+
+	}
+	Wishes.get()
+		.success(function (data) {
+			//返回的愿望赋值给random_wishes
+			$scope.wishes = data;
+			$scope.loading = false;
+		});
+
+
+	// CREATE ==================================================================
+	// when submitting the add form, send the text to the node API
+	$scope.createWish = function () {
+
+		// validate the formData to make sure that something is there
+		// if form is empty, nothing will happen
+		if ($scope.formData.wish_id != undefined) {
+			$scope.loading = true;
+
+			// call the create function from our service (returns a promise object)
+			Wishes.create($scope.formData)
+
+				// if successful creation, call our get function to get all the new todos
+				.success(function (data) {
+					$scope.loading = false;
+					$scope.formData = {}; // clear the form so our user is ready to enter another
+					$scope.wishes = data; // assign our new list of todos
+				});
+
+		}
+
+
+	};
+
+	// DELETE ==================================================================
+	// delete a todo after checking it
+	$scope.deleteWish = function (id) {
+		$scope.loading = true;
+
+		Wishes.delete(id)
+			// if successful creation, call our get function to get all the new todos
+			.success(function (data) {
+				$scope.loading = false;
+				$scope.wishes = data; // assign our new list of todos
+			});
+	};
+
 }]);
