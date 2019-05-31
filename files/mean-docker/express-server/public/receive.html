@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <script src="http://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+  <script src="http://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css"><!-- load bootstrap -->
+  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+  <!-- <link rel="stylesheet" href="js/font-awesome.min.css"> -->
+  <title>解忧杂货店</title>
+
+  <!-- SPELLS -->
+  <script src="//cdn.bootcss.com/angular.js/1.2.16/angular.min.js"></script>
+  <!-- load angular -->
+  <!-- <script src="js/angular.min.js"></script> -->
+  <!--- load angular -->
+  <script src="js/controllers/main.js"></script> <!-- load up our controller -->
+  <script src="js/services/worryShop.js"></script> <!-- load our todo service -->
+  <script src="js/core.js"></script> <!-- load our main application -->
+
+</head>
+
+<body class="jumbotron" style="background-image: url(./background.png);" ng-app="worryShop">
+  <h2 class="text-center text-primary">解忧杂货店</h2>
+  <ul class="nav nav-tabs">
+    <li role="presentation" class="active"><a href="#">收信</a></li>
+    <li role="presentation"><a href="list.html">信箱</a></li>
+  </ul>
+  <!-- 注册窗口 -->
+  <div id="register" class="modal fade" tabindex="-1" ng-controller="Register">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-body">
+          <button class="close" data-dismiss="modal">
+            <span>&times;</span>
+          </button>
+        </div>
+        <div class="modal-title">
+          <h1 class="text-center">注册</h1>
+        </div>
+        <div class="modal-body">
+          <form class="form-group" action="" name="myFrom">
+            <div class="form-group">
+              <label for="">用户名</label>
+              <label for="" ng-if="!userNameFormmatRight()" style="color: red">用户名格式不正确</label>
+              <label for="" ng-if="userNameUsedFormat()" style="color: red">用户名已注册</label>
+              <input class="form-control" type="text" placeholder="6-15位数字或字母" required maxlength="15" minlength="6"
+                name="user_name" ng-model="fromUserData.user_name">
+            </div>
+            <div class="form-group">
+              <label for="">密码</label>
+              <label for="" ng-if="!codeFormmatRight()" style="color: red">密码格式不正确</label>
+              <input class="form-control" type="password" name="password" placeholder="至少6位数字或字母" required minlength="6"
+                ng-model="fromUserData.code">
+            </div>
+            <div class="form-group">
+              <label for="">再次输入密码</label>
+              <label for="" ng-if="(fromUserData.code && codeAgain && fromUserData.code != codeAgain)"
+                style="color: red">
+                两次输入的密码不一致</label>
+              <input class="form-control" type="password" name="passwordAgain" placeholder="至少6位数字或字母" required
+                minlength="6" ng-model="codeAgain">
+            </div>
+            <div class="form-group">
+              <label for="">邮箱</label>
+              <label for="" ng-if="!emailFormmatRight()" style="color: red">邮箱格式不正确</label>
+              <label for="" ng-if="emailUsedFormat()" style="color: red">邮箱已注册</label>
+              <input class="form-control" type="text" placeholder="例如:123@123.com" ng-model="fromUserData.email"
+                name="email" required>
+            </div>
+            <div class="text-right">
+              <button class="btn btn-primary" type="submit" ng-disabled="!allRight()" ng-click="submit()">提交</button>
+              <button class="btn btn-danger" data-dismiss="modal">取消</button>
+            </div>
+
+            <p class="text-center" ng-show="registering">
+              <span class="fa fa-spinner fa-spin fa-3x"></span>
+            </p>
+            <a href="" data-toggle="modal" data-dismiss="modal" ng-if="!regSuccess" data-target="#login">已有账号？点我登录</a>
+            <a href="" data-toggle="modal" data-dismiss="modal" ng-if="regSuccess" data-target="#login">注册成功！ 点我登录</a>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- 登录窗口 -->
+  <div id="login" class="modal fade" ng-controller="Login">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-body">
+          <button class="close" data-dismiss="modal">
+            <span>&times;</span>
+          </button>
+        </div>
+        <div class="modal-title">
+          <h1 class="text-center">登录</h1>
+        </div>
+        <div class="modal-body">
+          <form class="form-group" action="">
+            <div class="form-group">
+              <label for="">用户名</label>
+              <label for="" ng-if="!userNameFormatValid()" style="color: red">用户名不存在！</label>
+              <input class="form-control" type="text" placeholder="" ng-model="user_name">
+            </div>
+            <div class="form-group">
+              <label for="">密码</label>
+              <label for="" ng-if="!codeFormatValid()" style="color: red">密码错误！</label>
+              <input class="form-control" type="password" placeholder="" ng-model="code">
+            </div>
+            <div class="text-right">
+              <button class="btn btn-primary" type="submit" ng-click="login()" ng-disabled="!codeValid()">登录</button>
+              <button class="btn btn-danger" data-dismiss="modal">取消</button>
+            </div>
+            <div ng-if="loginSuccess">登陆成功！</div>
+            <a href="" data-toggle="modal" data-dismiss="modal" data-target="#register">还没有账号？点我注册</a>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- 阅读窗口 -->
+  <div id="read" class="modal fade">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-body">
+          <button class="close" data-dismiss="modal">
+            <span>&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          fdsafdsa
+        </div>
+        <div class="text-right">
+          <button class="btn btn-primary" type="submit">接受</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-6 col-md-2">
+      <a class="thumbnail" data-toggle="modal" data-target="#read" href="">
+        <img src="./file.jpg" alt="...">
+      </a>
+    </div>
+    <div class="col-xs-6 col-md-2">
+      <a href="" class="thumbnail" data-toggle="modal" data-target="#read">
+        <img src="./file.jpg" alt="...">
+      </a>
+    </div>
+    <div class="col-xs-6 col-md-2">
+      <a href="" data-toggle="modal" data-target="#read" class="thumbnail">
+        <img src="./file.jpg" alt="...">
+      </a>
+    </div>
+    <div class="col-xs-6 col-md-2">
+      <a href="" data-toggle="modal" data-target="#read" class="thumbnail">
+        <img src="./file.jpg" alt="...">
+      </a>
+    </div>
+    <div class="col-xs-6 col-md-2">
+      <a href="" data-toggle="modal" data-target="#read" class="thumbnail">
+        <img src="./file.jpg" alt="...">
+      </a>
+    </div>
+    <div class="col-xs-6 col-md-2">
+      <a href="" data-toggle="modal" data-target="#read" class="thumbnail">
+        <img src="./file.jpg" alt="...">
+      </a>
+    </div>
+  </div>
+  <button type="button" class="btn btn-primary btn-lg btn-block"><span
+      class="glyphicon glyphicon-usd"></span>取信</button>
+</body>
+
+</html>
