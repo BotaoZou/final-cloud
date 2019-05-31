@@ -30,19 +30,20 @@ module.exports = function (app) {
         getWishes(res);
     });
 
+
     app.post('/api/users', function (req, res) {
+        console.log('POST /api/users');
+        // create a todo, information comes from AJAX request from Angular
         User.create({
             user_name: req.body.user_name,
             code: req.body.code,
             email: req.body.email,
             rank: 0,
-            done: false
         }, function (err, user) {
-            if (err)
+            if (err) {
                 res.send(err);
-
-            // get and return all the todos after you create another
-            getUsers(res);
+            }
+            console.log(user);
         });
 
     });
@@ -51,11 +52,9 @@ module.exports = function (app) {
 
         // create a todo, information comes from AJAX request from Angular
         Wish.create({
-            user_id: req.body.user_id,
-            wish_id: req.body.wish_id,
+            user_name: req.body.user_name,
+            title: req.body.title,
             description: req.body.description,
-            publish_date: req.body.publish_date,
-            ddl: req.body.ddl,
             bonus: req.body.bonus,
             done: false
         }, function (err, wish) {

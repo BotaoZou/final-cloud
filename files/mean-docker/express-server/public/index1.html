@@ -5,20 +5,27 @@
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <!-- <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
   <script src="http://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
   <script src="http://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+  <!-- <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css"> -->
+  <!-- <link rel="stylesheet" href="js/font-awesome.min.css"> -->
+
+  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css"><!-- load bootstrap -->
+  <!-- <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css"> -->
+  <link rel="stylesheet" type="text/css" href="js/font-awesome.min.css">
   <title>解忧杂货店</title>
 
   <!-- SPELLS -->
-  <script src="//cdn.bootcss.com/angular.js/1.2.16/angular.min.js"></script><!-- load angular -->
+  <!-- <script src="//cdn.bootcss.com/angular.js/1.2.16/angular.min.js"></script> -->
+  <script src="js/angular.min.js"></script>
+  <!--- load angular -->
   <script src="js/controllers/main.js"></script> <!-- load up our controller -->
-  <script src="js/services/todos.js"></script> <!-- load our todo service -->
+  <script src="js/services/worryShop.js"></script> <!-- load our todo service -->
   <script src="js/core.js"></script> <!-- load our main application -->
 </head>
 
-<body class="jumbotron" style="background-image: url(./background.png);">
+<body class="jumbotron" style="background-image: url(./background.png);" ng-app="worryShop">
   <h2 class="text-center text-primary">解忧杂货店</h2>
   <ul class="nav navbar-nav navbar-right">
     <li><a data-toggle="modal" data-target="#register" href=""><span class="glyphicon glyphicon-user"></span> 注册</a>
@@ -31,7 +38,7 @@
     <li role="presentation"><a href="list.html">信箱</a></li>
   </ul>
   <!-- 注册窗口 -->
-  <div id="register" class="modal fade" tabindex="-1" ng-controller="userController">
+  <div id="register" class="modal fade" tabindex="-1" ng-controller="Register">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-body">
@@ -46,28 +53,39 @@
           <form class="form-group" action="" name="myFrom">
             <div class="form-group">
               <label for="">用户名</label>
-              <input class="form-control" type="text" placeholder="6-15位" required maxlength="15" minlength="6"
+              <label>{{1+1}}</label>
+              <label for="" ng-if="!userNameFormmatRight()" style="color: red">用户名格式不正确</label>
+              <input class="form-control" type="text" placeholder="6-15位数字或字母" required maxlength="15" minlength="6"
                 name="user_name" ng-model="fromUserData.user_name">
             </div>
             <div class="form-group">
               <label for="">密码</label>
-              <input class="form-control" type="password" name="password" placeholder="至少6位" required minlength="6"
+              <label for="" ng-if="!codeFormmatRight()" style="color: red">密码格式不正确</label>
+              <input class="form-control" type="password" name="password" placeholder="至少6位数字或字母" required minlength="6"
                 ng-model="fromUserData.code">
             </div>
             <div class="form-group">
               <label for="">再次输入密码</label>
-              <input class="form-control" type="password" name="passwordAgain" placeholder="至少6位" ng-model="codeAgain">
+              <label for="" ng-if="(fromUserData.code && codeAgain && fromUserData.code != codeAgain)"
+                style="color: red">
+                两次输入的密码不一致</label>
+              <input class="form-control" type="password" name="passwordAgain" placeholder="至少6位数字或字母" required
+                minlength="6" ng-model="codeAgain">
             </div>
             <div class="form-group">
               <label for="">邮箱</label>
-              <input class="form-control" type="email" placeholder="例如:123@123.com" ng-model="fromUserData.email"
+              <label for="" ng-if="!emailFormmatRight()" style="color: red">邮箱格式不正确</label>
+              <input class="form-control" type="text" placeholder="例如:123@123.com" ng-model="fromUserData.email"
                 name="email" required>
-
             </div>
             <div class="text-right">
-              <button class="btn btn-primary" type="submit">提交</button>
+              <button class="btn btn-primary" type="submit" ng-disabled="!allRight()" ng-click="submit()">提交</button>
               <button class="btn btn-danger" data-dismiss="modal">取消</button>
             </div>
+
+            <p class="text-center" ng-show="registering">
+              <span class="fa fa-spinner fa-spin fa-3x"></span>
+            </p>
             <a href="" data-toggle="modal" data-dismiss="modal" data-target="#login">已有账号？点我登录</a>
           </form>
         </div>
