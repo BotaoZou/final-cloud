@@ -60,6 +60,8 @@ module.exports = function (app) {
         }, function (err, wish) {
             if (err)
                 res.send(err);
+
+            getWishes(res);
         });
 
     });

@@ -240,7 +240,9 @@ ctrl.controller('wishController', ['$scope', '$http', '$rootScope', 'Wishes', fu
 	// use the service to get all the todos
 	Wishes.get()
 		.success(function (data) {
+			console.log("First get");
 			console.log(data);
+			console.log("First get done.");
 			$scope.wishes = data;
 			$scope.wishing = false;
 		});
@@ -259,16 +261,15 @@ ctrl.controller('wishController', ['$scope', '$http', '$rootScope', 'Wishes', fu
 			$scope.wishData.user_name = $rootScope.userName;
 
 			// call the create function from our service (returns a promise object)
-			Wishes.create($scope.wishData)
-				// if successful creation, call our get function to get all the new todos
-				.success(function (data) {
-					console.log("TERMINATE");
-					$scope.wishes = data;
-					console.log(data);
-					$scope.wishing = false;
-					$scope.wishData = {}; // clear the form so our user is ready to enter another
+			Wishes.create($scope.wishData).success(function (data) {
+				console.log("Call back begin");
+				$scope.wishes = data;
+				console.log(data);
+				cosole.log("Call back done.");
+				$scope.wishing = false;
+				$scope.wishData = {}; // clear the form so our user is ready to enter another
 
-				});
+			});
 		}
 
 	}
