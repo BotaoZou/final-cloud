@@ -232,33 +232,53 @@ ctrl.controller('wishController', ['$scope', '$http', '$rootScope', 'Wishes', fu
 	$scope.wishData = {};
 	$scope.wishing = false;
 	$scope.bonusList = [1, 2, 3, 4, 5, 6];
-	$scope.randomWishes = new Array[6];
-	console.log($scope.wishData);
+	
+
+	Wishes.get().success(function (data) {
+		console.log("First get");
+		console.log(data);
+		console.log("First get done.");
+		$scope.wishes = data;
+		$scope.wishing = false;
+		$scope.maxToShow = min(6, $scope.wishes.length);
+		$scope.index=arrange($scope.maxToShow);
+		$scope.currentIndex=index[0];
+	});
+
+	min = function (a, b) {
+		if (a >= b)
+			return b;
+		else
+			return a;
+	};
 
 	arrange = function (n) {
-		var arr = Array.from({ length: n }, (v, k) => k);
+		//n表示数组范围的大小
+		var arr=[];
+        for(var i=0;i<6;i++){
+			var arrNum=parseInt(Math.random()*n);
+			var flag=true;
+			for(var j=0;j<=arr.length;j++){
+				if(arrNum==arr[j]) {
+					flag = false;
+					break;
+				}
+			}
+			 if(flag){
+				arr.push(arrNum);
+			 }else{
+				 i--;
+			 }
+		}
 		console.log(arr);
 		return arr;
 	}
 
-	// GET =====================================================================
-	// when landing on the page, get all todos and show them
-	// use the service to get all the todos
-	$scope.setRandomWishes() = function () {
-		var start = Math.ceil(Math.random() * $scope.wishes.length);
-		var step = Math.ceil(Math.random() * $scope.wishes.length / 6);
-		for (var i = 0; i < 6; i++) {
-			$scope.randomWishes[i] = $scope.wishes[start + step];
-		}
+
+	$scope.click = function (n) {
+		$scope.currentIndex=n;
 	}
-	Wishes.get()
-		.success(function (data) {
-			console.log("First get");
-			console.log(data);
-			console.log("First get done.");
-			$scope.wishes = data;
-			$scope.wishing = false;
-		});
+
 
 	// CREATE ==================================================================
 	// when submitting the add form, send the text to the node API
