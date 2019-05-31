@@ -1,6 +1,5 @@
 var ctrl = angular.module('Controller', []);
 
-
 ctrl.controller('Register', ['$scope', '$http', '$rootScope', 'Users', function ($scope, $rootScope, $http, Users) {
 	$scope.fromUserData = {};
 	$scope.registering = true;
@@ -233,11 +232,25 @@ ctrl.controller('wishController', ['$scope', '$http', '$rootScope', 'Wishes', fu
 	$scope.wishData = {};
 	$scope.wishing = false;
 	$scope.bonusList = [1, 2, 3, 4, 5, 6];
+	$scope.randomWishes = new Array[6];
 	console.log($scope.wishData);
+
+	arrange = function (n) {
+		var arr = Array.from({ length: n }, (v, k) => k);
+		console.log(arr);
+		return arr;
+	}
 
 	// GET =====================================================================
 	// when landing on the page, get all todos and show them
 	// use the service to get all the todos
+	$scope.setRandomWishes() = function () {
+		var start = Math.ceil(Math.random() * $scope.wishes.length);
+		var step = Math.ceil(Math.random() * $scope.wishes.length / 6);
+		for (var i = 0; i < 6; i++) {
+			$scope.randomWishes[i] = $scope.wishes[start + step];
+		}
+	}
 	Wishes.get()
 		.success(function (data) {
 			console.log("First get");
