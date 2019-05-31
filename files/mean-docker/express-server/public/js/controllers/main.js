@@ -1,7 +1,7 @@
 var ctrl = angular.module('Controller', []);
 
 
-ctrl.controller('Register', ['$scope', '$http', '$rootScope', 'Users', function ($rootScope, $scope, $http, Users) {
+ctrl.controller('Register', ['$scope', '$http', '$rootScope', 'Users', function ($scope, $rootScope, $http, Users) {
 	$scope.fromUserData = {};
 	$scope.registering = true;
 	$scope.regSuccess = false;
