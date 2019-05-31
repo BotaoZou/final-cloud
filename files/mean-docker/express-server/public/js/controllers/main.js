@@ -70,21 +70,31 @@ ctrl.controller('Register', ['$scope', '$http', '$rootScope', 'Users', function 
 	};
 
 	$scope.userNameFormmatRight = function () {
-		if ('user_name' in $scope.fromUserData && $scope.fromUserData.user_name) {
+		console.log("USER NAME FORMMAT");
+		console.log('user_name' in $scope.fromUserData && $scope.fromUserData.user_name != undefined);
+		console.log('user_name' in $scope.fromUserData);
+		console.log($scope.fromUserData.user_name != undefined);
+		console.log("USER NAME FORMMAT");
+		if ('user_name' in $scope.fromUserData && $scope.fromUserData.user_name != undefined) {
 			return $scope.userNameValid();
 		}
 		return true;
 	};
 
 	$scope.userNameValid = function () {
-		if (!'user_name' in $scope.fromUserData || !$scope.fromUserData.user_name)
+		console.log("USER NAME VALID");
+		console.log(!'user_name' in $scope.fromUserData || $scope.fromUserData.user_name == undefined);
+		console.log(!'user_name' in $scope.fromUserData);
+		console.log($scope.fromUserData.user_name == undefined);
+		console.log('USER NAME VALID');
+		if (!'user_name' in $scope.fromUserData || $scope.fromUserData.user_name == undefined)
 			return false;
 		var user_name = $scope.fromUserData.user_name;
 		return isDigitOrLetter(user_name) && user_name.length >= 6 && user_name.length <= 15;
 	};
 
 	$scope.codeFormmatRight = function () {
-		if ('code' in $scope.fromUserData && $scope.fromUserData.code) {
+		if ('code' in $scope.fromUserData && $scope.fromUserData.code != undefined) {
 			var code = $scope.fromUserData.code;
 			return isDigitOrLetter(code) && code.length >= 6;
 		}
@@ -92,7 +102,7 @@ ctrl.controller('Register', ['$scope', '$http', '$rootScope', 'Users', function 
 	};
 
 	$scope.emailFormmatRight = function () {
-		if ('email' in $scope.fromUserData && $scope.fromUserData.email) {
+		if ('email' in $scope.fromUserData && $scope.fromUserData.email != undefined) {
 			var email = $scope.fromUserData.email;
 			return isEmail(email);
 		}
@@ -100,7 +110,7 @@ ctrl.controller('Register', ['$scope', '$http', '$rootScope', 'Users', function 
 	};
 
 	emailValid = function () {
-		if (!'email' in $scope.fromUserData || !$scope.fromUserData.email)
+		if (!'email' in $scope.fromUserData || $scope.fromUserData.email == undefined)
 			return false;
 		return isEmail($scope.fromUserData.email);
 	};
