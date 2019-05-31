@@ -1,12 +1,14 @@
 var ctrl = angular.module('Controller', []);
 
 
-ctrl.controller('Register', ['$scope', '$http', 'Users', function ($scope, $http, Users) {
+ctrl.controller('Register', ['$scope', '$http', '$rootScope', 'Users', function ($rootScope, $scope, $http, Users) {
 	$scope.fromUserData = {};
 	$scope.registering = true;
 	$scope.regSuccess = false;
-	$scope.usedName = [];
-	$scope.usedEmail = [];
+	$rootScope.usedName = [];
+	$rootScope.usedEmail = [];
+	$rootScope.usedCode = [];
+	$rootScope.users = null;
 
 	// GET =====================================================================
 	// when landing on the page, get all todos and show them
@@ -14,7 +16,7 @@ ctrl.controller('Register', ['$scope', '$http', 'Users', function ($scope, $http
 	Users.get()
 		.success(function (data) {
 			console.log(data);
-			$scope.users = data;
+			$rootScope.users = data;
 			$scope.registering = false;
 			departUsers();
 		});
@@ -33,7 +35,7 @@ ctrl.controller('Register', ['$scope', '$http', 'Users', function ($scope, $http
 			Users.create($scope.fromUserData).success(function (data) {
 				$scope.registering = false;
 				$scope.fromUserData = {}; // clear the form so our user is ready to enter another
-				$scope.users = data;
+				$rootScope.users = data;
 				departUsers();
 				$scope.regSuccess = true;
 			});
@@ -42,12 +44,14 @@ ctrl.controller('Register', ['$scope', '$http', 'Users', function ($scope, $http
 	};
 
 	departUsers = function () {
-		$scope.usedName = [];
-		$scope.usedEmail = [];
+		$rootScope.usedName = [];
+		$rootScope.usedEmail = [];
+		$rootScope.usedCode = [];
 
 		for (u in $scope.users) {
-			$scope.usedName.push($scope.users[u].user_name);
-			$scope.usedEmail.push($scope.users[u].email);
+			$rootScope.usedCode.push($rootScope.users[u].code);
+			$rootScope.usedName.push($rootScope.users[u].user_name);
+			$rootScope.usedEmail.push($rootScope.users[u].email);
 		}
 	};
 
@@ -126,7 +130,7 @@ ctrl.controller('Register', ['$scope', '$http', 'Users', function ($scope, $http
 	userNameUsed = function () {
 		if (!$scope.fromUserData.user_name)
 			return false;
-		var index = $scope.usedName.indexOf($scope.fromUserData.user_name);
+		var index = $rootScope.usedName.indexOf($scope.fromUserData.user_name);
 		if (index == -1)
 			return false;
 		else
@@ -136,7 +140,7 @@ ctrl.controller('Register', ['$scope', '$http', 'Users', function ($scope, $http
 	emailUsed = function () {
 		if (!$scope.fromUserData.email)
 			return true;
-		var index = $scope.usedEmail.indexOf($scope.fromUserData.email);
+		var index = $rootScope.usedEmail.indexOf($scope.fromUserData.email);
 		if (index == -1)
 			return false;
 		else
@@ -162,29 +166,6 @@ ctrl.controller('Login', ['$scope', '$http', '$rootScope', 'Users', function ($s
 	$rootScope.userName = null;
 
 
-	// GET =====================================================================
-	// when landing on the page, get all todos and show them
-	// use the service to get all the todos
-	Users.get()
-		.success(function (data) {
-			$scope.users = data;
-			$scope.logining = false;
-			departUsers();
-		});
-
-	departUsers = function () {
-		$scope.usedName = [];
-		$scope.usedCode = [];
-
-		for (u in $scope.users) {
-
-			$scope.usedName.push($scope.users[u].user_name);
-			$scope.usedCode.push($scope.users[u].code);
-		}
-
-		$scope.len = $scope.usedName.length;
-	};
-
 	$scope.userNameFormatValid = function () {
 		if ($scope.user_name == null || $scope.user_name == undefined)
 			return true;
@@ -194,7 +175,7 @@ ctrl.controller('Login', ['$scope', '$http', '$rootScope', 'Users', function ($s
 
 	userNameValid = function () {
 
-		var index = $scope.usedName.indexOf($scope.user_name);
+		var index = $rootScope.usedName.indexOf($scope.user_name);
 		if (index == -1)
 			return false;
 		else
@@ -217,12 +198,12 @@ ctrl.controller('Login', ['$scope', '$http', '$rootScope', 'Users', function ($s
 		if ($scope.code == null || $scope.code == undefined)
 			return false;
 
-		var userIdx = $scope.usedName.indexOf($scope.user_name);
+		var userIdx = $rootScope.usedName.indexOf($scope.user_name);
 
 		if (userIdx == -1)
 			return false;
 
-		if ($scope.code == $scope.usedCode[userIdx]) {
+		if ($scope.code == $rootScope.usedCode[userIdx]) {
 			{
 				$rootScope.userName = $scope.user_name;
 				return true;
