@@ -265,7 +265,7 @@ ctrl.controller('wishController', ['$scope', '$http', '$rootScope', 'Wishes', fu
 				console.log("Call back begin");
 				$scope.wishes = data;
 				console.log(data);
-				cosole.log("Call back done.");
+				console.log("Call back done.");
 				$scope.wishing = false;
 				$scope.wishData = {}; // clear the form so our user is ready to enter another
 
