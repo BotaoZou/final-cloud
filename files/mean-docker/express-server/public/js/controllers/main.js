@@ -174,6 +174,11 @@ ctrl.controller('Login', ['$scope', '$http', '$rootScope', 'Users', function ($s
 	};
 
 	userNameValid = function () {
+		if ($scope.user_name == null || $scope.user_name == undefined)
+			return false;
+
+		if ($rootScope.usedName == undefined)
+			return false;
 
 		var index = $rootScope.usedName.indexOf($scope.user_name);
 		if (index == -1)
@@ -196,6 +201,9 @@ ctrl.controller('Login', ['$scope', '$http', '$rootScope', 'Users', function ($s
 			return false;
 
 		if ($scope.code == null || $scope.code == undefined)
+			return false;
+
+		if ($rootScope.usedCode == undefined || $rootScope.usedName == undefined)
 			return false;
 
 		var userIdx = $rootScope.usedName.indexOf($scope.user_name);
