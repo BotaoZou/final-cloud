@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -11,22 +11,29 @@
 
   <script src="//cdn.bootcss.com/angular.js/1.2.16/angular.min.js"></script>
   <!--<script src="js/angular.min.js"></script>-->
-  <script src="js/controllers/main.js"></script> <!-- load up our controller -->
-  <script src="js/services/worryShop.js"></script> <!-- load our todo service -->
-  <script src="js/core.js"></script> <!-- load our main application -->
+  <script src="js/controllers/main.js"></script>
+  <!-- load up our controller -->
+  <script src="js/services/worryShop.js"></script>
+  <!-- load our todo service -->
+  <script src="js/core.js"></script>
+  <!-- load our main application -->
 
   <title>解忧杂货店</title>
 </head>
 
-<body class="jumbotron" style="background-image: url(./background.png);" ng-app="worryShop">
+<body class="jumbotron" style="background-image: url(./background.png);" ng-app="worryShop" ng-controller="wishController">
   <h2 class="text-center text-primary">解忧杂货店</h2>
   <ul class="nav nav-tabs">
-    <li role="presentation"><a href="index.html">收信</a></li>
-    <li role="presentation" class="active"><a href="#">信箱</a></li>
+    <li role="presentation">
+      <a href="index.html">收信</a>
+    </li>
+    <li role="presentation" class="active">
+      <a href="#">信箱</a>
+    </li>
     <h4 class="text-right text-primary">积分:100</h4>
   </ul>
   <!-- 许愿窗口 -->
-  <div id="wish" class="modal fade" ng-controller="wishController">
+  <div id="wish" class="modal fade">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-body">
@@ -35,28 +42,28 @@
           </button>
         </div>
         <div class="modal-body">
-            <form class="form-group" action="">
-                <div class="form-group">
-                    <label for="">标题</label>
-                    <!--<h1>{{1+1}}</h1>-->
-                    <script type="text/javascript" ng-if="true">console.log("HAHAHHA");</script>
-                    <input class="form-control" type="text" placeholder="起个清晰的标题吧:)" ng-model="wishData.title">
-                </div>
-                <div class="form-group" >
-                    <label for="">描述</label>
-                    <textarea class="form-control" type="text" placeholder="描述清楚才有人接哟:)" rows="6" ng-model="wishData.description"></textarea>
-                </div>
-                <div class="form-group">
-                    <label for="">奖励</label>
-                    <select class="form-control" ng-init="selectedBonus = bonusList[0]" ng-model="selectedBonus" ng-options="x for x in bonusList">
-                    </select>
-                </div>
-                <div class="text-right">
-                    <button class="btn btn-primary" type="submit" ng-click="createWish()">许愿</button>
-                    <button class="btn" data-dismiss="modal">取消</button>
-                </div>
+          <form class="form-group" action="">
+            <div class="form-group">
+              <label for="">标题</label>
+              <!--<h1>{{1+1}}</h1>-->
+              <script type="text/javascript" ng-if="true">console.log("HAHAHHA");</script>
+              <input class="form-control" type="text" placeholder="起个清晰的标题吧:)" ng-model="wishData.title">
+            </div>
+            <div class="form-group">
+              <label for="">描述</label>
+              <textarea class="form-control" type="text" placeholder="描述清楚才有人接哟:)" rows="6" ng-model="wishData.description"></textarea>
+            </div>
+            <div class="form-group">
+              <label for="">奖励</label>
+              <select class="form-control" ng-init="selectedBonus = bonusList[0]" ng-model="selectedBonus" ng-options="x for x in bonusList">
+              </select>
+            </div>
+            <div class="text-right">
+              <button class="btn btn-primary" type="submit" ng-click="createWish()">许愿</button>
+              <button class="btn" data-dismiss="modal">取消</button>
+            </div>
 
-            </form>
+          </form>
         </div>
       </div>
     </div>
@@ -71,7 +78,9 @@
     </ul>
     <ul class="list-group col-md-6">
       <h3 class="text-center text-primary">已接受</h3>
-      <li class="list-group-item">鹰眼<span class="badge">已完成</span></li>
+      <li class="list-group-item">鹰眼
+        <span class="badge">已完成</span>
+      </li>
       <li class="list-group-item">女帝</li>
       <li class="list-group-item">堂吉诃德</li>
       <li class="list-group-item">沙鳄</li>
@@ -80,7 +89,8 @@
       <li class="list-group-item">大熊</li>
     </ul>
   </div>
-  <button type="button" class="btn btn-primary btn-lg btn-block" data-toggle="modal" data-target="#wish"><span class="glyphicon glyphicon-usd"></span>许愿</button>
+  <button type="button" class="btn btn-primary btn-lg btn-block" data-toggle="modal" data-target="#wish">
+    <span class="glyphicon glyphicon-usd"></span>许愿</button>
 
 </body>
 
