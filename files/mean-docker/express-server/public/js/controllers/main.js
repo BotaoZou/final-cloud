@@ -48,7 +48,7 @@ ctrl.controller('Register', ['$scope', '$http', '$rootScope', 'Users', function 
 		$rootScope.usedEmail = [];
 		$rootScope.usedCode = [];
 
-		for (u in $scope.users) {
+		for (u in $rootScope.users) {
 			$rootScope.usedCode.push($rootScope.users[u].code);
 			$rootScope.usedName.push($rootScope.users[u].user_name);
 			$rootScope.usedEmail.push($rootScope.users[u].email);
