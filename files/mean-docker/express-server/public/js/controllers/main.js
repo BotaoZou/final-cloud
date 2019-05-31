@@ -268,7 +268,7 @@ ctrl.controller('wishController', ['$scope', '$http', '$rootScope', 'Wishes', fu
 				console.log("Call back done.");
 				$scope.wishing = false;
 				$scope.wishData = {}; // clear the form so our user is ready to enter another
-
+				window.location.href = "./list.html";
 			});
 		}
 
