@@ -70,11 +70,6 @@ ctrl.controller('Register', ['$scope', '$http', '$rootScope', 'Users', function 
 	};
 
 	$scope.userNameFormmatRight = function () {
-		console.log("USER NAME FORMMAT");
-		console.log('user_name' in $scope.fromUserData && $scope.fromUserData.user_name != undefined);
-		console.log('user_name' in $scope.fromUserData);
-		console.log($scope.fromUserData.user_name != undefined);
-		console.log("USER NAME FORMMAT");
 		if ('user_name' in $scope.fromUserData && $scope.fromUserData.user_name != undefined) {
 			return $scope.userNameValid();
 		}
@@ -82,11 +77,6 @@ ctrl.controller('Register', ['$scope', '$http', '$rootScope', 'Users', function 
 	};
 
 	$scope.userNameValid = function () {
-		console.log("USER NAME VALID");
-		console.log(!'user_name' in $scope.fromUserData || $scope.fromUserData.user_name == undefined);
-		console.log(!'user_name' in $scope.fromUserData);
-		console.log($scope.fromUserData.user_name == undefined);
-		console.log('USER NAME VALID');
 		if (!'user_name' in $scope.fromUserData || $scope.fromUserData.user_name == undefined)
 			return false;
 		var user_name = $scope.fromUserData.user_name;
@@ -184,6 +174,11 @@ ctrl.controller('Login', ['$scope', '$http', '$rootScope', 'Users', function ($s
 	};
 
 	userNameValid = function () {
+		console.log("NNNNNNNNNNNNNNNNNNNNNNNNNNN");
+		console.log($rootScope.usedName);
+		console.log($rootScope.usedCode);
+		console.log($scope.user_name);
+		console.log("NNNNNNNNNNNNNNNNNNNNNNNNNNNN");
 		if ($scope.user_name == null || $scope.user_name == undefined)
 			return false;
 
