@@ -223,7 +223,7 @@ ctrl.controller('Login', ['$scope', '$http', '$rootScope', 'Users', function ($s
 	$scope.login = function () {
 		console.log($scope.user_name);
 		console.log($scope.code);
-		window.location.href = './index.html';
+		window.location.href = './receive.html';
 		$scope.loginSuccess = true;
 	}
 
